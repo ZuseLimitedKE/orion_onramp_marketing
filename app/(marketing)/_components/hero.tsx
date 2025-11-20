@@ -38,7 +38,7 @@ export function HeroSection() {
           </h1>
           <p className="mt-8 text-lg font-medium text-gray-500 sm:text-xl">
             Orion connects African fiat currencies directly to digital assets.
-            Move from M-Pesa to HBAR in under two minutes.
+            Move from mobile money to crypto in under two minutes.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-12">
             <WaitlistDialog>
