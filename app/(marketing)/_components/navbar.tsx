@@ -38,7 +38,7 @@ export function Navbar() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-semibold text-gray-900 hover:text-[#1fbf75] transition-colors"
+              className="text-sm font-semibold text-gray-900 hover:text-primary transition-colors"
             >
               {item.name}
             </Link>
@@ -75,7 +75,7 @@ export function Navbar() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-[#1fbf75]/10"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-primary/10"
                   >
                     {item.name}
                   </Link>
