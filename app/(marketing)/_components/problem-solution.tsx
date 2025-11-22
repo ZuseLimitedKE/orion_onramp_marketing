@@ -4,7 +4,7 @@ import { Zap, ArrowRight } from "lucide-react";
 
 export function ProblemSolution() {
   return (
-    <section className="py-20 bg-slate-white" id="how-it-works">
+    <section className="py-20 bg-neutral-50" id="how-it-works">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <motion.div

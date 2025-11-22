@@ -4,7 +4,7 @@ import { ArrowDown } from "./arrow-down";
 
 export function HeroSection() {
   return (
-    <div className="relative isolate overflow-hidden px-6 lg:px-8 py-40 bg-white">
+    <div className="relative isolate overflow-hidden px-6 lg:px-8 py-40 bg-neutral-50">
       <div className="mx-auto max-w-2xl">
         <div className="hidden sm:mb-8 sm:flex sm:justify-center">
           <div className="relative rounded-full px-3 py-1 text-sm text-gray-600 ring-1 ring-gray-900/10 hover:ring-[#1fbf75]/40">
