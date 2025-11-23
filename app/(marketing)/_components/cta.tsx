@@ -16,10 +16,10 @@ export function CTASection() {
                 <span className="text-primary">Potential</span>
               </h2>
               <p className="text-neutral-500 text-lg leading-relaxed max-w-xl mb-6 font-light">
-                We are launching in Kenya, South Africa and Nigeria, three of
-                Africa's most dynamic economies. Orion removes the "last-mile"
-                barrier, enabling the next 100 DApps on Hedera to access these
-                critical markets.
+                We are launching in Kenya, and Nigeria, two of Africa's most
+                dynamic economies. Orion removes the "last-mile" barrier,
+                enabling the next 100 DApps on Hedera to access these critical
+                markets.
               </p>
             </div>
 

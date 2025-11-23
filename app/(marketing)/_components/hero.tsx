@@ -11,7 +11,7 @@ export function HeroSection() {
             Orion is currently still in development.{" "}
             <a
               href="#"
-              className="font-semibold text-[#1fbf75] hover:text-[#18a763]"
+              className="font-semibold text-primary hover:text-[#18a763]"
             >
               <span
                 aria-hidden="true"
@@ -22,8 +22,10 @@ export function HeroSection() {
           </div>
         </div>
         <div className="text-center">
-          <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-7xl">
-            Bridge Africa to Web3
+          <h1 className="text-6xl font-bold tracking-tight text-gray-900 sm:text-7xl">
+            <span className="text-primary">Bridge Africa</span>
+            <br />
+            to Web3
           </h1>
           <p className="mt-8 text-lg font-medium text-gray-500 sm:text-xl">
             Orion connects African fiat currencies directly to digital assets.

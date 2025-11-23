@@ -1,88 +1,157 @@
 "use client";
-import { motion } from "framer-motion";
-import { Zap, ArrowRight } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { AnimatedList } from "@/components/animated-list";
+
+interface Item {
+  name: string;
+  description: string;
+  icon: string;
+  color: string;
+  time: string;
+}
+
+let notifications = [
+  {
+    name: "New User Onboarded",
+    description: "KYC Verified (Kenya)",
+    time: "15s ago",
+    icon: "👤",
+    color: "#00C9A7",
+  },
+  {
+    name: "Payment Received",
+    description: "5,000 KES via M-Pesa",
+    time: "10s ago",
+    icon: "💸",
+    color: "#FFB800",
+  },
+  {
+    name: "Smart Contract Triggered",
+    description: "Swap execution started",
+    time: "5s ago",
+    icon: "⚡",
+    color: "#FF3D71",
+  },
+  {
+    name: "Settlement Complete",
+    description: "350 HBAR sent to wallet",
+    time: "Just now",
+    icon: "✅",
+    color: "#1E86FF",
+  },
+  {
+    name: "Webhook Sent",
+    description: "Callback to DApp backend",
+    time: "Just now",
+    icon: "🔗",
+    color: "#9747FF",
+  },
+];
+
+notifications = Array.from({ length: 10 }, () => notifications).flat();
+
+const Notification = ({ name, description, icon, color, time }: Item) => {
+  return (
+    <figure
+      className={cn(
+        "relative mx-auto min-h-fit w-full max-w-[400px] cursor-pointer overflow-hidden rounded-2xl p-4",
+        // animation styles
+        "transition-all duration-200 ease-in-out hover:scale-[1.03]",
+        // light styles
+        "bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
+        // dark styles
+        "transform-gpu dark:bg-transparent dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
+      )}
+    >
+      <div className="flex flex-row items-center gap-3">
+        <div
+          className="flex size-10 items-center justify-center rounded-2xl"
+          style={{
+            backgroundColor: color,
+          }}
+        >
+          <span className="text-lg">{icon}</span>
+        </div>
+        <div className="flex flex-col overflow-hidden">
+          <figcaption className="flex flex-row items-center whitespace-pre text-lg font-medium text-neutral-900 dark:text-white">
+            <span className="text-sm sm:text-lg">{name}</span>
+            <span className="mx-1">·</span>
+            <span className="text-xs text-gray-500">{time}</span>
+          </figcaption>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            {description}
+          </p>
+        </div>
+      </div>
+    </figure>
+  );
+};
 
 export function ProblemSolution() {
   return (
-    <section className="py-20 bg-neutral-50" id="how-it-works">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              The Friction is Real
-            </h2>
-            <p className="text-lg text-slate-600 mb-6">
-              Today, a user in Nairobi or Lagos faces a complex, expensive maze
-              to access Web3.
-            </p>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-slate-600">
-                <div className="w-6 h-6 rounded-full bg-red-100 text-red-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  ✕
-                </div>
-                <span>Multiple transfers between mobile money and banks</span>
-              </li>
-              <li className="flex items-start gap-3 text-slate-600">
-                <div className="w-6 h-6 rounded-full bg-red-100 text-red-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  ✕
-                </div>
-                <span>High fees eating into capital</span>
-              </li>
-              <li className="flex items-start gap-3 text-slate-600">
-                <div className="w-6 h-6 rounded-full bg-red-100 text-red-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  ✕
-                </div>
-                <span>Slow processing times killing adoption</span>
-              </li>
-            </ul>
-          </motion.div>
-
-          <motion.div
-            className="bg-white p-8 rounded-2xl shadow-xl border border-slate-100 relative"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="absolute -top-4 -right-4 bg-primary text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg">
-              The Orion Way
-            </div>
-            <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              <Zap className="text-primary w-6 h-6" />
-              Instant Settlement
-            </h3>
-            <div className="space-y-6">
-              <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-xs">
-                    KES
-                  </div>
-                  <div>
-                    <p className="font-semibold">M-Pesa</p>
-                    <p className="text-xs text-slate-500">Kenyan Shilling</p>
-                  </div>
-                </div>
-                <ArrowRight className="text-slate-300" />
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white font-bold text-xs">
-                    HBAR
-                  </div>
-                  <div>
-                    <p className="font-semibold">Hedera</p>
-                    <p className="text-xs text-slate-500">Wallet</p>
-                  </div>
-                </div>
-              </div>
-              <p className="text-center text-sm font-medium text-primary">
-                Completed in under 2 minutes
+    <section className="bg-neutral-50 py-24 sm:py-32" id="problem-solution">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center">
+          <div className="lg:pr-8 lg:pt-4">
+            <div className="lg:max-w-lg">
+              <h2 className="text-base font-semibold leading-7 text-primary">
+                The Friction is Real
+              </h2>
+              <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Accessing Web3 shouldn't be a maze.
               </p>
+              <p className="mt-6 text-lg leading-8 text-gray-600">
+                Today, Africans face a complex, expensive struggle to move money
+                between local fiat and global crypto markets.
+              </p>
+              <ul role="list" className="mt-10 space-y-8 text-gray-600">
+                <li className="flex gap-x-3">
+                  <span className="mt-1 size-5 flex-none rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xs font-bold">
+                    ✕
+                  </span>
+                  <span>
+                    <strong className="font-semibold text-gray-900">
+                      Multiple transfers.
+                    </strong>{" "}
+                    Moving from M-Pesa to a bank, then to an exchange, takes
+                    time and effort.
+                  </span>
+                </li>
+                <li className="flex gap-x-3">
+                  <span className="mt-1 size-5 flex-none rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xs font-bold">
+                    ✕
+                  </span>
+                  <span>
+                    <strong className="font-semibold text-gray-900">
+                      High fees.
+                    </strong>{" "}
+                    Every step of the legacy process eats into your capital.
+                  </span>
+                </li>
+                <li className="flex gap-x-3">
+                  <span className="mt-1 size-5 flex-none rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xs font-bold">
+                    ✕
+                  </span>
+                  <span>
+                    <strong className="font-semibold text-gray-900">
+                      Slow settlements.
+                    </strong>{" "}
+                    Waiting days for banks to process international transfers
+                    kills adoption.
+                  </span>
+                </li>
+              </ul>
             </div>
-          </motion.div>
+          </div>
+          <div className="relative flex h-[500px] w-full flex-col overflow-hidden rounded-lg bg-background p-6 shadow-lg border border-neutral-100">
+            <AnimatedList>
+              {notifications.map((item, idx) => (
+                <Notification key={idx} {...item} />
+              ))}
+            </AnimatedList>
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-background"></div>
+          </div>
         </div>
       </div>
     </section>
