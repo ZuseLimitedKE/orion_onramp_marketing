@@ -24,7 +24,7 @@ const features = [
   {
     name: "Liquidity Engine",
     description:
-      "Smart treasury management ensures deep liquidity for high-volume transactions, powered by our automated market making systems.",
+      "Smart treasury management ensures deep liquidity for high-volume transactions.",
     icon: Coins,
   },
 ];
