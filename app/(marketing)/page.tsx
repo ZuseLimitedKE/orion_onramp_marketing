@@ -7,7 +7,7 @@ import { Features } from "./_components/features";
 
 export default function MarketingPage() {
   return (
-    <main className="bg-white min-h-screen flex flex-col">
+    <main className="bg-neutral-50 min-h-screen flex flex-col">
       <Navbar />
       <HeroSection />
       <ProblemSolution />

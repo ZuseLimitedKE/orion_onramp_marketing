@@ -5,9 +5,9 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "Product", href: "#" },
-  { name: "Features", href: "#" },
-  { name: "Waitlist", href: "#" },
+  { name: "Product", href: "#problem-solution" },
+  { name: "Features", href: "#features" },
+  { name: "Waitlist", href: "#cta" },
 ];
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
