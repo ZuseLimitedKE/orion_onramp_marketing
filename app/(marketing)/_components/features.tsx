@@ -6,7 +6,7 @@ const features = [
   {
     name: "Instant Settlement",
     description:
-      "Move from Mobile Money to Crypto in under 2 minutes. We bridge the gap between local fiat rails and the Hedera network instantly.",
+      "Move from mobile money to crypto in under 2 minutes. We bridge the gap between local fiat rails and the Hedera network instantly.",
     icon: Zap,
   },
   {
@@ -56,8 +56,7 @@ export function Features() {
             Everything you need to capture the African market
           </p>
           <p className="mt-6 text-lg leading-8 text-slate-600">
-            Orion provides the essential rails connecting the next billion users
-            to the Hedera ecosystem. Secure, compliant, and built for speed.
+            Orion is secure, compliant, and built for speed.
           </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">

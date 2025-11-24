@@ -23,7 +23,7 @@ export function CTASection() {
         <WaitlistDialog>
           <Button
             size="lg"
-            className="bg-white hover:bg-white/95  text-primary h-14 px-8 text-lg rounded-md transition-all duration-300 hover:scale-105 shadow-lg shadow-black/10"
+            className="bg-white hover:bg-white/95  text-primary h-14 px-8 text-lg rounded-md transition-all duration-300  shadow-lg shadow-black/10"
           >
             Join Waitlist <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
