@@ -3,6 +3,7 @@ import { HeroSection } from "./_components/hero";
 import { CTASection } from "./_components/cta";
 import { Navbar } from "./_components/navbar";
 import { ProblemSolution } from "./_components/problem-solution";
+import { Features } from "./_components/features";
 
 export default function MarketingPage() {
   return (
@@ -10,6 +11,7 @@ export default function MarketingPage() {
       <Navbar />
       <HeroSection />
       <ProblemSolution />
+      <Features />
       <CTASection />
       <Footer />
     </main>
