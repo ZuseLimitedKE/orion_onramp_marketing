@@ -30,6 +30,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner";
+import { addToWaitlist } from "@/app/actions/waitlist";
 import { ArrowRight } from "lucide-react";
 
 const waitlistSchema = z.object({
@@ -77,17 +78,20 @@ export const WaitlistDialog = ({ children }: WaitlistDialogProps) => {
     setIsSubmitting(true);
 
     try {
-      // Simulate an API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const response = await addToWaitlist(data);
 
-      console.log("Waitlist submission:", data);
-
-      toast.success("You're on the waitlist!", {
-        description: "We'll reach out to you soon about early access to Orion.",
-      });
-
-      form.reset();
-      setOpen(false);
+      if (response.success) {
+        toast.success(response.message, {
+          description:
+            "We'll reach out to you soon about early access to Orion.",
+        });
+        form.reset();
+        setOpen(false);
+      } else {
+        toast.error(response.message, {
+          description: "Please try again later.",
+        });
+      }
     } catch (error) {
       toast.error("Something went wrong", {
         description: "Please try again later.",
@@ -100,7 +104,7 @@ export const WaitlistDialog = ({ children }: WaitlistDialogProps) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[700px] max-h-[95vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl">Join the Waitlist</DialogTitle>
           <DialogDescription>
