@@ -15,5 +15,5 @@ export const waitlistSchema = z.object({
     .string()
     .nonempty({ message: "Please enter your country" })
     .max(100, { message: "Country name must be less than 100 characters" }),
-  fiatToCrypto: z.enum(["yes", "no"], "Please select an option"),
+  fiatToCrypto: z.enum(["yes", "no"], { error: "Please select an option" }),
 });
