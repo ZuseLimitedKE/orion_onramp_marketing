@@ -8,10 +8,9 @@ export const waitlistSchema = z.object({
     .string()
     .nonempty({ message: "Please select the chain you're building on" })
     .max(100, { message: "Chain name must be less than 100 characters" }),
-  paymentVolume: z.enum(
-    ["0-10", "11-100", "100+"],
-    "Please select your payment volume",
-  ),
+  paymentVolume: z.enum(["0-10", "11-100", "100+"], {
+    error: "Please select your payment volume",
+  }),
   country: z
     .string()
     .nonempty({ message: "Please enter your country" })
