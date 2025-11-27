@@ -1,29 +1,18 @@
 "use server";
 
 import { google } from "googleapis";
-import * as z from "zod";
-
-const waitlistSchema = z.object({
-  email: z
-    .email({ message: "Please enter a valid email address" })
-    .max(255, { message: "Email must be less than 255 characters" })
-    .nonempty({ message: "Email is required" }),
-  chain: z
-    .string()
-    .nonempty({ message: "Please select the chain you're building on" })
-    .max(100, { message: "Chain name must be less than 100 characters" }),
-  paymentVolume: z.enum(
-    ["0-10", "11-100", "100+"],
-    "Please select your payment volume",
-  ),
-  country: z
-    .string()
-    .nonempty({ message: "Please enter your country" })
-    .max(100, { message: "Country name must be less than 100 characters" }),
-  fiatToCrypto: z.enum(["yes", "no"], "Please select an option"),
-});
-
+import { waitlistSchema } from "../types/zod";
 export async function addToWaitlist(formData: unknown) {
+  if (
+    !process.env.GOOGLE_PRIVATE_KEY ||
+    !process.env.GOOGLE_CLIENT_EMAIL ||
+    !process.env.GOOGLE_SHEET_ID
+  ) {
+    throw new Error(
+      "Invalid env setup , ensure you have the required env variables for the Google Sheet API",
+    );
+  }
+
   const validation = waitlistSchema.safeParse(formData);
 
   if (!validation.success) {
@@ -60,7 +49,7 @@ export async function addToWaitlist(formData: unknown) {
     if (rows) {
       for (const row of rows) {
         if (row[0] === email) {
-          // row[0] still refers to the email column since the range is now F:F
+          //NOTE: row[0]  refers to the email column since the range is  F:F
           return {
             success: false,
             message: "This email has already been used",

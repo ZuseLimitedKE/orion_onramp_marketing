@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { waitlistSchema } from "@/app/types/zod";
 import {
   Dialog,
   DialogContent,
@@ -32,29 +33,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner";
 import { addToWaitlist } from "@/app/actions/waitlist";
 import { ArrowRight } from "lucide-react";
-
-const waitlistSchema = z.object({
-  email: z
-    .email({ message: "Please enter a valid email address" })
-    .max(255, { message: "Email must be less than 255 characters" })
-    .nonempty({ message: "Email is required" }),
-  chain: z
-    .string()
-    .nonempty({ message: "Please select the chain you're building on" })
-    .max(100, { message: "Chain name must be less than 100 characters" }),
-  paymentVolume: z.enum(
-    ["0-10", "11-100", "100+"],
-    "Please select your payment volume",
-  ),
-  country: z
-    .string()
-    .nonempty({ message: "Please enter your country" })
-    .max(100, { message: "Country name must be less than 100 characters" }),
-  fiatToCrypto: z.enum(["yes", "no"], "Please select an option"),
-});
-
 type WaitlistFormValues = z.infer<typeof waitlistSchema>;
-
 interface WaitlistDialogProps {
   children: React.ReactNode;
 }
