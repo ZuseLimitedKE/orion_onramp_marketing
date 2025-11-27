@@ -44,7 +44,7 @@ const item = {
   show: { opacity: 1, y: 0 },
 };
 
-export function Features() {
+export function FeaturesSection() {
   return (
     <div className="bg-neutral-50 py-24 sm:py-32" id="features">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
