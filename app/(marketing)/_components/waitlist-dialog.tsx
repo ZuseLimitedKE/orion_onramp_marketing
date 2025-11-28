@@ -84,9 +84,11 @@ export const WaitlistDialog = ({ children }: WaitlistDialogProps) => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[700px] max-h-[95vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="text-2xl">Join the Waitlist</DialogTitle>
-          <DialogDescription>
+        <DialogHeader className="text-left">
+          <DialogTitle className="md:text-2xl text-xl">
+            Join the Waitlist
+          </DialogTitle>
+          <DialogDescription className="text-xs md:text-sm">
             Tell us about your project and we'll get you early access to Orion's
             payment infrastructure.
           </DialogDescription>
