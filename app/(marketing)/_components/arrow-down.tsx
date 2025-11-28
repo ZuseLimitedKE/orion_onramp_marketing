@@ -15,7 +15,7 @@ export function ArrowDown() {
   return (
     <motion.div variants={itemVariants} className="pt-20 flex justify-center">
       <motion.a
-        href="#problem-solution"
+        href="#product"
         aria-label="Scroll to About section"
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 1.2 }}

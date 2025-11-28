@@ -5,7 +5,7 @@ import { WaitlistDialog } from "./waitlist-dialog";
 export function CTASection() {
   return (
     <section
-      className="py-32 mx-8 rounded-lg bg-primary text-white relative overflow-hidden"
+      className="py-32 md:mx-8 mx-4 rounded-lg bg-primary text-white relative overflow-hidden"
       id="cta"
     >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-white/10 blur-[150px] rounded-full pointer-events-none opacity-40" />
@@ -14,7 +14,7 @@ export function CTASection() {
         <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-[1.1]">
           Unlocking Africa's Potential
         </h2>
-        <p className="text-white/90 text-lg md:text-xl leading-relaxed max-w-2xl mb-10 font-light">
+        <p className="text-white/90 text-base md:text-xl leading-relaxed max-w-2xl mb-10 font-light">
           We are launching in Kenya and Nigeria, two of Africa's most dynamic
           economies. Orion removes the "last-mile" barrier, enabling the next
           100 DApps on Hedera to access these critical markets.
