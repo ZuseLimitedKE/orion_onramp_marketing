@@ -3,13 +3,15 @@
 import { google } from "googleapis";
 import { waitlistSchema } from "../types/zod";
 export async function addToWaitlist(formData: unknown) {
-  if (
-    !process.env.GOOGLE_PRIVATE_KEY ||
-    !process.env.GOOGLE_CLIENT_EMAIL ||
-    !process.env.GOOGLE_SHEET_ID
-  ) {
+  const {
+    GOOGLE_SHEET_ID: spreadsheetId,
+    GOOGLE_CLIENT_EMAIL: clientEmail,
+    GOOGLE_PRIVATE_KEY_BASE64: privateKeyBase64,
+  } = process.env;
+
+  if (!spreadsheetId || !clientEmail || !privateKeyBase64) {
     throw new Error(
-      "Invalid env setup , ensure you have the required env variables for the Google Sheet API",
+      "Invalid env setup: ensure GOOGLE_SHEET_ID, GOOGLE_CLIENT_EMAIL, and GOOGLE_PRIVATE_KEY_BASE64 are set.",
     );
   }
 
@@ -26,17 +28,20 @@ export async function addToWaitlist(formData: unknown) {
     validation.data;
 
   try {
+    const privateKey = Buffer.from(privateKeyBase64, "base64").toString(
+      "utf-8",
+    );
+
     const auth = new google.auth.GoogleAuth({
       credentials: {
-        client_email: process.env.GOOGLE_CLIENT_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+        client_email: clientEmail,
+        private_key: privateKey,
       },
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
 
     const sheets = google.sheets({ version: "v4", auth });
 
-    const spreadsheetId = process.env.GOOGLE_SHEET_ID;
     const range = "Form Responses!F:F";
 
     // Check for duplicate emails
