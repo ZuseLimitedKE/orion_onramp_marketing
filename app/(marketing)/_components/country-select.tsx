@@ -318,9 +318,13 @@ export function CountrySelect({
                   key={country.name}
                   value={country.name}
                   onSelect={(currentValue) => {
-                    onChange(currentValue === value ? "" : currentValue);
+                    const selected = countries.find(
+                      (c) => c.name.toLowerCase() === currentValue.toLowerCase()
+                    );
+                    onChange(selected?.name === value ? "" : selected?.name ?? "");
                     setOpen(false);
                   }}
+                >
                 >
                   <Check
                     className={cn(
