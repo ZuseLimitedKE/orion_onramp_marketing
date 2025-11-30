@@ -74,7 +74,7 @@ const countries: Country[] = [
   { name: "Colombia", flag: "🇨🇴" },
   { name: "Comoros", flag: "🇰🇲" },
   { name: "Congo", flag: "🇨🇬" },
-  { name: "The Democratic Republic of Congo", flag: "🇨🇩" },
+  { name: "Democratic Republic of Congo", flag: "🇨🇩" },
   { name: "Cook Islands", flag: "🇨🇰" },
   { name: "Costa Rica", flag: "🇨🇷" },
   { name: "Cote D'Ivoire", flag: "🇨🇮" },
@@ -153,7 +153,7 @@ const countries: Country[] = [
   { name: "Lithuania", flag: "🇱🇹" },
   { name: "Luxembourg", flag: "🇱🇺" },
   { name: "Macao", flag: "🇲🇴" },
-  { name: "Macedonia, The Former Yugoslav Republic of", flag: "🇲🇰" },
+  { name: "North Macedonia", flag: "🇲🇰" },
   { name: "Madagascar", flag: "🇲🇬" },
   { name: "Malawi", flag: "🇲🇼" },
   { name: "Malaysia", flag: "🇲🇾" },
@@ -319,13 +319,15 @@ export function CountrySelect({
                   value={country.name}
                   onSelect={(currentValue) => {
                     const selected = countries.find(
-                      (c) => c.name.toLowerCase() === currentValue.toLowerCase()
+                      (c) =>
+                        c.name.toLowerCase() === currentValue.toLowerCase(),
                     );
-                    onChange(selected?.name === value ? "" : selected?.name ?? "");
+                    onChange(
+                      selected?.name === value ? "" : (selected?.name ?? ""),
+                    );
                     setOpen(false);
                   }}
                 >
-                  <Check
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
