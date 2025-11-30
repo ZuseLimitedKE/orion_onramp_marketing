@@ -33,6 +33,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner";
 import { addToWaitlist } from "@/app/actions/waitlist";
 import { ArrowRight } from "lucide-react";
+import { CountrySelect } from "./country-select";
 type WaitlistFormValues = z.infer<typeof waitlistSchema>;
 interface WaitlistDialogProps {
   children: React.ReactNode;
@@ -188,13 +189,11 @@ export const WaitlistDialog = ({ children }: WaitlistDialogProps) => {
                     3. What country are you in?
                     <span className="text-destructive ml-1">*</span>
                   </FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="e.g., Kenya, Nigeria, United States"
-                      {...field}
-                      maxLength={100}
-                    />
-                  </FormControl>
+                  <CountrySelect
+                    value={field.value}
+                    onChange={field.onChange}
+                    disabled={isSubmitting}
+                  />
                   <FormMessage />
                 </FormItem>
               )}
