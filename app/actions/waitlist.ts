@@ -51,6 +51,7 @@ export async function addToWaitlist(formData: unknown) {
     });
 
     const rows = response.data.values;
+
     if (rows) {
       for (const row of rows) {
         if (row[0] === email) {
@@ -63,14 +64,43 @@ export async function addToWaitlist(formData: unknown) {
       }
     }
 
-    // Add new row
-    await sheets.spreadsheets.values.append({
+    // Add new row using batchUpdate
+    const sheet = await sheets.spreadsheets.get({
       spreadsheetId,
-      range: "Form Responses",
-      valueInputOption: "USER_ENTERED",
+      ranges: ['Form Responses'],
+      fields: 'sheets(properties(sheetId,title))',
+    });
+
+    const formResponsesSheet = sheet.data.sheets?.find(
+      s => s.properties?.title === 'Form Responses'
+    );
+
+    if (!formResponsesSheet?.properties?.sheetId) {
+      throw new Error('Could not find "Form Responses" sheet');
+    }
+
+    await sheets.spreadsheets.batchUpdate({
+      spreadsheetId,
       requestBody: {
-        values: [
-          [new Date(), chain, paymentVolume, country, fiatToCrypto, email],
+        requests: [
+          {
+            appendCells: {
+              sheetId: formResponsesSheet.properties.sheetId,
+              rows: [
+                {
+                  values: [
+                    { userEnteredValue: { stringValue: new Date().toISOString() } },
+                    { userEnteredValue: { stringValue: chain } },
+                    { userEnteredValue: { stringValue: paymentVolume } },
+                    { userEnteredValue: { stringValue: country } },
+                    { userEnteredValue: { stringValue: fiatToCrypto } },
+                    { userEnteredValue: { stringValue: email } },
+                  ],
+                },
+              ],
+              fields: 'userEnteredValue',
+            },
+          },
         ],
       },
     });
